@@ -149,7 +149,14 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        use: 'Happypack/loader?id=js', // 多线打包
+        //use: 'Happypack/loader?id=js', // 多线打包
+        //还可以直接用babel-preset-env 预设     
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets:['@babel/preset-env']
+          }
+        },
         include: path.resolve(__dirname, 'src'),
         exclude: /node_modules/
       },
