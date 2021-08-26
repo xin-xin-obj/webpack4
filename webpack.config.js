@@ -152,9 +152,10 @@ module.exports = {
         //use: 'Happypack/loader?id=js', // 多线打包
         //还可以直接用babel-preset-env 预设     
         use: {
-          loader: 'babel-loader',
+          loader: 'babel-loader', // babel的配置有关
           options: {
-            presets:['@babel/preset-env']
+            presets:['@babel/preset-env'],
+            plugins:[]
           }
         },
         include: path.resolve(__dirname, 'src'),
