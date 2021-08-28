@@ -323,7 +323,7 @@ module.exports = {
         {
           loader: 'imports-loader?this=>window' // console.log(this === window) 返回 true
         },
-        {
+        { // 为什么有的放在这里，不放在modules 中
           loader: 'eslint-loader', // 放置 babel-loader 之后, eslint 校验代码格式
           options: {
             formatter: require('eslint-friendly-formatter') // 报错时输入内容的格式更友好
