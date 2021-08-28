@@ -156,6 +156,15 @@ module.exports = {
           options: {
             presets:['@babel/preset-env'],
             plugins:[]
+//             presets: [ // 为什么写在下面的plugin配置项中
+//               ['@babel/preset-env', { useBuiltIns: 'usage' }] // useBuiltIns 按需处理
+//             ],
+//             plugins: [
+//               ['@babel/plugin-proposal-decorators', { 'legacy': true }], // 类和对象装饰器
+//               ['@babel/plugin-proposal-class-properties', { 'loose': true }], // 属性初始化
+//               ['@babel/plugin-transform-runtime'], // 能写 es6+ 新方法, 写库的时候用
+//               ['@babel/plugin-syntax-dynamic-import'] // 动态加载 import
+//             ]
           }
         },
         include: path.resolve(__dirname, 'src'),
