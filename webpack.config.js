@@ -6,6 +6,15 @@
  * @LastEditors: GanEhank
  * @LastEditTime: 2019-08-31 17:39:04
  */
+/**jQuery 外部模块的三种方式
+* 方式1： expose-loader 单个引入
+* 方式2： provider Plugin 插件，全局注入
+*方式3：通过cdn引入，不打包进来
+
+*图片引入的两种方式
+*1. css 中background:url() 这种的会自动处理成require 形式，不用加require
+*2. 如果在js，或者vue中动态引入的都需要require（） 图片，会变成base64 格式的，这才是真正对的url
+*/
 const webpack = require('webpack')
 const WebpackBundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin // 打包分析, webpack-bundle-anlayzer stats.json
 const path = require('path')
@@ -27,7 +36,7 @@ module.exports = {
   output: { // 出口
     filename: '[name].[hash:5].js', // 生成文件的名称, 加入 hash 5位, [name] 对应 entry 定义的文件名称
     chunkFilename: '[name].[contenthash].js', // 非入口 chunk 文件的名称 (间接引入, 查看 html 如果没引入就是间接引入) contenthash: 代码不变则该生成的号码也不变
-    publicPath: 'http://www.zhihu.cn', // 打包后文件名前面加前缀
+    publicPath: 'http://www.zhihu.cn', // 打包后文件名前面加前缀*** /smc
     path: path.resolve(__dirname, 'dist'), // 打包后文件放哪里 (path.resolve 相对路径解析成绝对路径)
     library: 'MyLibrary', // 暴露 library <script src="MyLibrary.js"></script>
     libraryTarget: 'umd' // 控制以不同形式暴露 (umd: 在 AMD 或 CommonJS require 之后可访问)
@@ -132,7 +141,7 @@ module.exports = {
     }
     // 3) 服务端启动 webpack
   },
-  externals: { // webpack 打包时，忽略掉
+  externals: { // webpack 打包时，忽略掉 // 方式3：通过cdn引入，不打包进来
     jquery: '$'
   },
   module: { // 模块, css, img... 转换为模块
@@ -144,7 +153,7 @@ module.exports = {
       //   exclude: /node_modules/
       // },
       {
-        test: require.resolve('jquery'),
+        test: require.resolve('jquery'), // 方式1：当页面import jQuery的时候，执行这里
         use: 'expose-loader?$' // 暴露全局的 loader
       },
       {
@@ -226,12 +235,12 @@ module.exports = {
         // ]
         use: [
           {
-            loader: 'url-loader', // 将图片转换为 base64
+            loader: 'url-loader', // 将图片转换为 base64  
             options: {
               name: '[name]-[hash:5].[ext]', // 生成的图片名称
               limit: 2048, // 大于 2048 处理成 base64
               publicPath: '', // 引入资源路径前面加的前缀 ''
-              outputPath: 'dist/', // 放置在 dist 文件夹下
+              outputPath: 'dist/', // 放置在 dist 文件夹下,放在一个统一的目录下
               useRelativePath: true // 放置在 assets/imgs, 因为图片原本路径为 (aseets/imgs)
             }
           },
@@ -253,7 +262,7 @@ module.exports = {
             options: {
               name: '[name]-[hash:5].[ext]',
               limit: 5000,
-              outputPath: 'assets/imgs/'
+              outputPath: 'assets/font/' //  字体图标
             }
           }
         ]
@@ -328,7 +337,7 @@ module.exports = {
           options: {
             formatter: require('eslint-friendly-formatter') // 报错时输入内容的格式更友好
           },
-          enforce: 'pre' // pre 先执行, post 后执行
+          enforce: 'pre' // pre 先执行, post 后执行，不按顺序先执行
         }
       ]
     }),
@@ -350,7 +359,7 @@ module.exports = {
       EXPRESSION: '1+1' // 2
     }),
     new webpack.IgnorePlugin(/\.\/locale/, /moment$/), // 忽略 moment 里的 locale 包
-    new webpack.ProvidePlugin({ // 自动加载模块
+    new webpack.ProvidePlugin({ // 自动加载模块  方式2：在每个模块中注入jQuery，就不用引入jQuery了
       $: 'jquery',
       _: 'lodash',
       _join: ['lodash', 'join']
