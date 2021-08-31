@@ -134,12 +134,12 @@ module.exports = {
         }
       }
     },
-    before(app) { // 提供的钩子, 前端模拟数据
+    before(app) { // 提供的钩子, 前端模拟数据  app就是server的app
       app.get('/user', (req, res) => {
         res.json({ name: 'ganbefore' })
       })
     }
-    // 3) 服务端启动 webpack
+    // 3) 服务端启动server webpack    webpack-dev-middleware 中间件  。相当于通过代码启动wabpack
   },
   externals: { // webpack 打包时，忽略掉 // 方式3：通过cdn引入，不打包进来
     jquery: '$'
