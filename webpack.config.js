@@ -342,11 +342,11 @@ module.exports = {
       ]
     }),
     new WebpackBundleAnalyzerPlugin(),
-    new CleanWebpackPlugin(),
-    new CopyWebpackPlugin([
+    new CleanWebpackPlugin('./dist'),// 打包前先删除
+    new CopyWebpackPlugin([        // 拷贝到对应目录下
       {
         from: './doc',
-        to: './'
+        to: './dist'
       }
     ]),
     new webpack.HotModuleReplacementPlugin(), // 热更新插件
