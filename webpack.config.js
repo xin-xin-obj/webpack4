@@ -13,7 +13,7 @@
 
 *图片引入的两种方式
 *1. css 中background:url() 这种的会自动处理成require 形式，不用加require
-*2. 如果在js，或者vue中动态引入的都需要require（） 图片，会变成base64 格式的，这才是真正对的url
+*2. 如果在js，或者vue中动态引入的都需要require（） 图片，会变成base64 格式的，这才是真正对的url,不然是按照纯字符串编译的
 */
 const webpack = require('webpack')
 const WebpackBundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin // 打包分析, webpack-bundle-anlayzer stats.json
