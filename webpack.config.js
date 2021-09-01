@@ -90,9 +90,9 @@ module.exports = {
   },
   resolve: { // 配置模块如何解析
     modules: [path.resolve('node_modules')], // 模块查找路径
-    extensions: ['.js', '.css', '.json', '.vue'], // 自动解析的扩展
-    mainFields: ['style', 'main'], // 从 npm 中导入模块时, 在 package.json 中使用哪个字段导入模块
-    alias: { // 创建 import 或 require 的别名
+//     extensions: ['.js', '.css', '.json', '.vue'], // 自动解析的扩展,import 的时候不用写.css 等后缀了
+//     mainFields: ['style', 'main'], // 从 npm 中导入模块时, 在 package.json 中使用哪个字段导入模块
+    alias: { // 创建 import 或 require 的别名，不用写那么长了。
       bootstrap: 'bootstrap/dist/css/bootstrap.css'
     }
   },
