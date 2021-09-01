@@ -354,7 +354,7 @@ module.exports = {
     new webpack.NamedChunksPlugin(), // 热加载时 chunk 版本号从数字改成文件名字
     new webpack.BannerPlugin('ganyihuan 2019'), // 版权信息
     new webpack.DefinePlugin({ // 定义环境变量
-      DEV: JSON.stringify('production'), // string production
+      DEV: JSON.stringify('production'), // string production  "'dev'"  写法很怪异
       FLAG: 'true', // boolean
       EXPRESSION: '1+1' // 2
     }),
