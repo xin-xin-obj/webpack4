@@ -158,7 +158,7 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        //use: 'Happypack/loader?id=js', // 多线打包,不使用bable-loader 打包了。会调用plugin ,所以写在下面了
+        //use: 'Happypack/loader?id=js', // 多线打包,不使用bable-loader 打包了。会调用plugin ,所以写在下面了。css也可以使用多线程，plugin 在new 一个
         //还可以直接用babel-preset-env 预设     
         use: {
           loader: 'babel-loader', // babel的配置有关
