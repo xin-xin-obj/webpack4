@@ -53,8 +53,8 @@ module.exports = {
         parallel: true // 并发压缩
       }),
       new OptimizeCssAssetsWebpackPlugin({}) // css 压缩
-    ],
-    splitChunks: { // 多页面分割代码
+    ], 
+    splitChunks: { // 多页面分割代码  多页面才用到   公共代码抽离
       chunks: 'all', // 选择哪些块。有效值是 all async initial
       minSize: 30000, // 大于 30kb 才分割
       minChunks: 1, // 模块被使用了至少 1 次后进行代码分割, Infinity 不会将任何模块打包进去
@@ -69,7 +69,7 @@ module.exports = {
           filename: 'vendors.js', // 代码分割后生成文件名字
           chunks: 'initial', // 选择哪些块。有效值是 all async initial
           minSize: 0,
-          minChunks: 2
+          minChunks: 2  // 最少使用的模块
         },
         default: {
           priority: -1,
