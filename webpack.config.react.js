@@ -13,7 +13,7 @@ module.exports = {
     // libraryTarget: 'var' // 控制以不同形式暴露
   },
   plugins: [
-    new webpack.DllPlugin({ // 某种方法实现了拆分 bundles
+    new webpack.DllPlugin({ // 某种方法实现了拆分 bundles   ****动态链接库
       name: '_dll_[name]', // 暴露出的 Dll 的函数名
       path: path.resolve(__dirname, 'build', 'manifest.json')
     })
